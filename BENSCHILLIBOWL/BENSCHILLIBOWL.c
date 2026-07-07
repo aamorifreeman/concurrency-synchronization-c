@@ -116,6 +116,11 @@ Order* GetOrder(BENSCHILLIBOWL* mcg) {
     mcg->current_size--;
     mcg->orders_handled++;
 
+    /* Last order taken: wake any cooks still waiting so they can exit. */
+    if (mcg->orders_handled == mcg->expected_num_orders) {
+        pthread_cond_broadcast(&mcg->can_get_orders);
+    }
+
     pthread_cond_signal(&mcg->can_add_orders);
     pthread_mutex_unlock(&mcg->mutex);
 

@@ -1,0 +1,16 @@
+# Object files
+*.o
+
+# Built executables
+main
+shm_proc
+example
+psdd
+ref_psdd
+
+# Runtime artifacts
+log.txt
+
+# OS / editor
+.DS_Store
+.settings
